@@ -1,0 +1,16 @@
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rq-pin {
+  display: grid; place-items: center; border-radius: 9999px; background: var(--c); color: #fff;
+  font-size: 14px; font-weight: 700; border: 3px solid #fff; box-shadow: 0 2px 8px rgb(0 0 0 / .35);
+}
+.rq-pulse { animation: rq-pulse 1.6s infinite; }
+@keyframes rq-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 70%, transparent), 0 2px 8px rgb(0 0 0 / .35); }
+  70% { box-shadow: 0 0 0 16px transparent, 0 2px 8px rgb(0 0 0 / .35); }
+  100% { box-shadow: 0 0 0 0 transparent, 0 2px 8px rgb(0 0 0 / .35); }
+}
+.leaflet-container { font-family: inherit; z-index: 0; }
