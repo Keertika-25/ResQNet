@@ -4,6 +4,7 @@ import { Area, AreaChart, Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAx
 import { ago, api, elapsed, fmtTime, INCIDENT_STATUSES, INCIDENT_TYPES, km, PRIORITIES, type Hospital, type Incident, type IncidentDetail, type Stats, type Team } from '../api'
 import { useAuth, usePoll } from '../auth'
 import Layout from '../components/Layout'
+import Map3D from '../components/Map3D'
 import MapView from '../components/MapView'
 import { Alert, Button, Card, Disclaimer, Empty, inputCls, Modal, PRIORITY_HEX, PriorityBadge, StatCard, StatusBadge, Timeline, useTick } from '../components/ui'
 
@@ -77,7 +78,7 @@ export default function Dispatcher() {
           <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-blue-600" />Hospital</span>
           <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-emerald-600" />Team</span>
         </div>}>
-        <MapView className="h-[460px] xl:h-[620px]" incidents={filtered} hospitals={hospitals.data ?? []} teams={teams.data ?? []}
+        <Map3D className="h-[460px] xl:h-[620px]" incidents={filtered} hospitals={hospitals.data ?? []} teams={teams.data ?? []}
           selectedId={selected} onSelect={id => setSelected(id)} focus={focus} />
       </Card>
 

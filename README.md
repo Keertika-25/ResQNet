@@ -8,7 +8,7 @@ An academic full-stack prototype. It is **one** connected emergency-coordination
 
 | Layer | Tech |
 |---|---|
-| Frontend | React 19 + Vite + TypeScript, Tailwind CSS, React Router, Leaflet / OpenStreetMap, Recharts |
+| Frontend | React 19 + Vite + TypeScript, Tailwind CSS, React Router, Leaflet / OpenStreetMap (2D maps), MapLibre GL + OpenFreeMap OSM vector tiles (3D command map), OSRM public router (road routes), Recharts |
 | Backend | Python FastAPI, SQLAlchemy 2, Pydantic 2 |
 | Database | SQLite (`backend/resqnet.db`) |
 | Auth | scrypt password hashing (Python stdlib), JWT bearer tokens (HS256), role-based access on every endpoint |
@@ -152,6 +152,8 @@ docs/API.md                  API reference
 ```
 
 ## 9. Known limitations (prototype scope)
+
+- 3D command map: buildings come from OpenStreetMap, which has no height tag for most buildings. Untagged buildings get a stable pseudo-height so the scene reads as a city; this is not real elevation data. Routes use the public OSRM demo server, and the map falls back to a straight line if it can't be reached. Vehicle position is estimated from the time since the status changed. If WebGL isn't available, the map falls back to the 2D Leaflet map.
 
 - Dashboards refresh by polling every 5 seconds. A WebSocket push would be the upgrade path.
 - Only one active team per incident. Multi-unit responses are not modelled.

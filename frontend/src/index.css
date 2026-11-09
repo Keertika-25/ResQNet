@@ -14,3 +14,24 @@
   100% { box-shadow: 0 0 0 0 transparent, 0 2px 8px rgb(0 0 0 / .35); }
 }
 .leaflet-container { font-family: inherit; z-index: 0; }
+
+/* 3D map overlays */
+.rq-tag { position: relative; }
+.rq-tag > span {
+  position: absolute; left: calc(100% + 6px); top: 50%; transform: translateY(-50%); pointer-events: none;
+  display: flex; flex-direction: column; padding: 3px 8px; border-radius: 6px; white-space: nowrap;
+  background: rgb(8 16 36 / .85); color: #fff; font-size: 11px; font-weight: 600; line-height: 1.25;
+  border: 1px solid rgb(255 255 255 / .15); box-shadow: 0 4px 12px rgb(0 0 0 / .4);
+}
+.rq-tag > span b { font-weight: 500; color: #cbd5e1; font-size: 10px; }
+.rq-tag.rq-sel > span { border-color: #60a5fa; box-shadow: 0 0 0 2px #2563eb, 0 4px 12px rgb(0 0 0 / .4); }
+.rq-eta {
+  display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 9999px; background: #fff;
+  color: #0f172a; font-size: 11px; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 14px rgb(0 0 0 / .45);
+}
+.rq-eta i { width: 8px; height: 8px; border-radius: 9999px; }
+.rq-vehicle {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; font-size: 18px;
+  background: #fff; border: 3px solid var(--c); box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 30%, transparent), 0 6px 16px rgb(0 0 0 / .5);
+}
+.maplibregl-ctrl-attrib { font-size: 10px; }
