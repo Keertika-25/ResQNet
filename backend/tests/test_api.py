@@ -48,6 +48,9 @@ def test_role_access(client):
     assert client.get("/api/incidents", headers=hosp).status_code == 403
     assert client.post("/api/incidents", json=REPORT, headers=res).status_code == 403
     assert client.put("/api/hospitals/mine", json={}, headers=cit).status_code == 403
+    assert client.get("/api/hospitals", headers=cit).status_code == 403
+    assert client.get("/api/hospitals", headers=res).status_code == 200  # crews see capacity (read-only)
+    assert client.put("/api/hospitals/mine", json={}, headers=res).status_code == 403
     # citizens see only their own incidents
     mine = client.get("/api/incidents", headers=cit).json()
     other = client.get("/api/incidents", headers=login(client, "citizen2")).json()

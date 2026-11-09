@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Check, Clock, MapPin, Navigation, Phone, Users, X } from 'lucide-react'
-import { ago, api, elapsed, fmtTime, type AssignmentWithIncident, type Team } from '../api'
+import { ago, api, elapsed, fmtTime, type AssignmentWithIncident, type Hospital, type Team } from '../api'
 import { usePoll } from '../auth'
 import Layout from '../components/Layout'
-import MapView from '../components/MapView'
+import Map3D from '../components/Map3D'
 import { Alert, Button, Card, Empty, Field, inputCls, Modal, PriorityBadge, StatusBadge, useTick } from '../components/ui'
 
 const ACTIVE = ['Assigned', 'Accepted', 'En Route', 'On Scene']
@@ -17,6 +17,7 @@ const STEPS = ['Assigned', 'Accepted', 'En Route', 'On Scene', 'Completed']
 export default function Rescue() {
   const { data, error, reload } = usePoll<AssignmentWithIncident[]>('/assignments/mine')
   const teams = usePoll<Team[]>('/teams', 15000)
+  const hospitals = usePoll<Hospital[]>('/hospitals', 30000)
   const [rejecting, setRejecting] = useState<AssignmentWithIncident | null>(null)
   const [reason, setReason] = useState('')
   const [msg, setMsg] = useState({ error: '', ok: '' })
@@ -71,7 +72,7 @@ export default function Rescue() {
               </div>
               <p className="mt-3 text-xs text-slate-400">Assigned {ago(a.created_at)}</p>
             </div>
-            <MapView className="h-64 rounded-none lg:h-full lg:min-h-[280px] lg:rounded-r-2xl" incidents={[i]} teams={team ? [team] : []} />
+            <Map3D className="h-80 rounded-none lg:h-full lg:min-h-[360px] lg:rounded-l-none lg:rounded-r-2xl" incidents={[i]} teams={team ? [team] : []} hospitals={hospitals.data ?? []} />
           </div>
         </Card>
       })}

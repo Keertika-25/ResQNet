@@ -310,7 +310,7 @@ def update_assignment_status(assignment_id: int, body: S.AssignmentStatusIn, use
 
 # ---------------- hospitals ----------------
 @app.get("/api/hospitals", response_model=list[S.HospitalOut], tags=["hospitals"])
-def list_hospitals(_: User = Depends(require("dispatcher", "hospital")), db: Session = Depends(get_db)):
+def list_hospitals(_: User = Depends(require("dispatcher", "hospital", "rescue")), db: Session = Depends(get_db)):
     return db.scalars(select(Hospital).order_by(Hospital.id)).all()
 
 

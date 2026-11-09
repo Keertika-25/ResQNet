@@ -40,7 +40,7 @@ Enum values:
 | POST | `/incidents/{id}/close` | `{note?}` | **409** while a team is still active. A note is required unless the status is `Resolved`. |
 | GET | `/stats` | – | Totals, active, critical, unassigned, team/hospital capacity, breakdowns and a 7-day trend |
 | GET | `/teams` | – | All rescue teams (a rescue user sees only its own team) |
-| GET | `/hospitals` | – | All hospitals with reported availability (also open to hospital admins) |
+| GET | `/hospitals` | – | All hospitals with reported availability (also readable by hospital admins and rescue teams) |
 | POST | `/demo/reset` | – | Wipes the database and reloads the demo data. Only works when `DEMO_MODE=true`. |
 
 ## Rescue team
